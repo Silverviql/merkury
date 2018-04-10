@@ -8,42 +8,72 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link href="css/fontawesome-all.css" rel="stylesheet">
-
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#menu").on("click","a", function (event) {
+                event.preventDefault();
+                var id  = $(this).attr('href'),
+                    top = $(id).offset().top;
+                $('body,html').animate({scrollTop: top}, 1500);
+            });
+        });
+    </script>
     <title>Merkury</title>
 </head>
 <body>
+<?php
+$host="localhost";
+$user="mysql";
+$pass="mysql"; //установленный вами пароль
+$db_name="bd";
+$link=mysql_connect($host,$user,$pass);
+mysql_select_db($db_name,$link);
+
+//Если переменная Name передана
+if (isset($_POST["fio"])) {
+    //Вставляем данные, подставляя их в запрос
+    $sql = mysql_query("INSERT INTO `message` (`fio`, `mail`, `message`) 
+                        VALUES ('".$_POST['fio']."','".$_POST['mail']."','".$_POST['message']."')");
+    /*//Если вставка прошла успешно
+    if ($sql) {
+        echo "<p>Данные успешно добавлены в таблицу.</p>";
+    } else {
+        echo "<p>Произошла ошибка.</p>";
+    }*/
+}
+?>
 <div class="home">
     <div class="container">
         <div class="row">
             <div class="mt-2 col-12 ">
-                <nav class="navbar navbar-expand-lg navbar-light " style="padding: 0px ; ">
+                <nav  class="navbar navbar-expand-lg navbar-light " style="padding: 0px ; ">
                     <a class="navbar-brand" href="#">
                         <img src="css/logo.png" width="157" height="49" alt="logo">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div  class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav nav-pills ml-auto" id="pills-tab" role="tablist" >
                             <li class="nav-item">
-                                <a class="nav-link" id="pills-anasehife-tab" data-toggle="pill" href="#pills-anasehife" role="tab" aria-controls="pills-anasehife" aria-selected="false">Features</a>
+                                <a href="#yak1" class="nav-link" >Features</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="pills-turlar-tab" data-toggle="pill" href="#pills-turlar" role="tab" aria-controls="pills-turlar" aria-selected="false">Pricing</a>
+                                <a class="nav-link" id="pills-turlar-tab" data-toggle="pill" href="#prising" role="tab" aria-controls="pills-turlar" aria-selected="false">Pricing</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="pills-gemi-tab" data-toggle="pill" href="#pills-gemi" role="tab" aria-controls="pills-gemi" aria-selected="false">Blog</a>
+                                <a class="nav-link" id="pills-gemi-tab" data-toggle="pill" href="#blog" role="tab" aria-controls="pills-gemi" aria-selected="false">Blog</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="pills-hotteler-tab" data-toggle="pill" href="#pills-hotteler" role="tab" aria-controls="pills-hotteler" aria-selected="false">Contact</a>
+                                <a class="nav-link" id="pills-hotteler-tab" data-toggle="pill" href="#contact" role="tab" aria-controls="pills-hotteler" aria-selected="false">Contact</a>
                             </li>
                         </ul>
                         <button type="button" class="btn btn-outline-primary">login</button>
                     </div>
-
                 </nav>
-
                 <div id="banner">
+
                     <div class="container">
                         <div class="row">
                             <div class="col-12 ">
@@ -54,17 +84,59 @@
                                     </div>
                                 </header>
                             </div>
-                            <div class="mt-5 col-12 ">
-                                <button type="button" class="btn btn-primary">Get started</button>
                             </div>
                         </div>
                     </div>
+                <div class="center">
+                <!-- Кнопка пуска модальное окно -->
+                <button type="button" class="btn btn-primary btn-lg center-block" data-toggle="modal" data-target="#myModal">
+                    Get started
+                </button>
+
+                <!-- Модальное окно -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">Get started</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form action="" method="post">
+                                    <tr>
+                                        <td>ФИО:</td>
+                                        <td><input type="text" name="fio"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mail:</td>
+                                        <td><input type="text" name="mail" size="3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Текст</td>
+                                        <td><input type="text" name="message" size="3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><input type="submit" value="OK"></td>
+                                    </tr>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="iconFeatures">
+<div class="iconFeatures" id="yak1">
     <div class="container">
         <div class="row">
             <div class="col-4">
@@ -235,5 +307,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
 </body>
 </html>
