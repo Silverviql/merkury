@@ -1,0 +1,81 @@
+@import "bootstrap.css";
+
+
+.navbar-light .nav > li >a{color:#fffeff;}
+
+.navbar-light .nav-link.active,
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    color: #ffffff;
+    background-color: #563d7c;
+}
+.noborder{
+    margin: 0px ;
+    height: 2px;
+    background-color: #563d7c;
+}
+
+.text-muted {
+    color:#000000 !important;
+}
+
+.purple{
+    color: #563d7c;
+  }
+
+
+.card-body-alter {
+    flex: 1 1 auto;
+    padding: 0rem;
+}
+
+.home{
+    height: 1100px;
+    background: #0e1a35;
+}
+
+.iconFeatures{
+    text-align: center;
+    height: 1600px;
+    background: #ffffff;
+}
+.dragDrop{
+    height: 750px;
+    background: #0e1a35;
+}
+
+.powerfullPSDTemplate{
+    height: 2100px;
+    background: #ffffff;
+}
+.footer{
+    height: 150px;
+    background: #0e1a35;
+}
+/* Banner */
+
+#banner
+{
+    overflow: hidden;
+    padding: 10em 0em;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+#banner header h2
+{
+    text-transform: uppercase;
+    font-size: 3em;
+    color: #FFF;
+}
+
+#banner header .byline
+{
+    padding: 0em 5em;
+    font-size: 1.50em;
+}
+
+#banner .button
+{
+    margin-top: 1em;
+}
